@@ -14,28 +14,34 @@ const userSchema = new Schema(
             unique: true,
             required: true,
             match: [/.+@.+\..+/, 'Please enter a valid e-mail address']
-        },
+        }
 
-        thoughts: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Thought'
-            }
-        ],
+        // thoughts: [
+        //     {
+        //         type: Schema.Types.ObjectId,
+        //         ref: 'Thought'
+        //     }
+        // ],
 
-        friends: []
-    },
-    {
-        toJSON: {
-            virtuals: true
-        },
-        id: false
+        // friends: [
+        //     {
+        //         type: Schema.Types.ObjectId,
+        //         ref: 'User'
+        //     }
+        // ]
     }
+    // {
+    //     toJSON: {
+    //         virtuals: true
+    //     },
+    //     id: false
+    // }
 );
 
-userSchema.virtual('friendCount').get(function () {
-    // return length of friends array 
-})
+// userSchema.virtual('friendCount').get(function () {
+//     // return length of friends array 
+//     return this.friends.length
+// })
 
 // create the User model using the userSchema
 const User = model('User', userSchema);
