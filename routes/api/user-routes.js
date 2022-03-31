@@ -1,10 +1,19 @@
 const router = require('express').Router();
-const { getAllUsers, createUser } = require('../../controllers/user-controller');
+const {
+    getAllUsers,
+    createUser,
+    getUserById
+} = require('../../controllers/user-controller');
 
-// http://localhost:3001/api/users
+// localhost:3001/api/users
 router
     .route('/')
     .get(getAllUsers)
     .post(createUser);
+
+// localhost:3001/api/users/id
+router
+    .route('/:id')
+    .get(getUserById);
 
 module.exports = router;
