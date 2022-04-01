@@ -1,4 +1,4 @@
-const User = require('../models/User')
+const User = require('../models/User');
 
 const userController = {
     // GET all users
@@ -44,7 +44,25 @@ const userController = {
 
     // PUT a user (update a user)
     // api/users/:id
-    
+    updateUser(req, res) {
+        User.findOneAndUpdate(
+            { _id: req.params.id },
+            req.body,
+            { new: true, runValidators: true }
+        )
+            .then(dbUserData => {
+                if (!dbUserData) {
+                    res.status(404).json({ message: 'No user found with this id.' });
+                    return;
+                }
+                res.json(dbUserData);
+            })
+            .catch(err => res.status(400).json(err));
+    }
+
+    // DELETE a user 
+    // api/users/:id
+    // to come... 
 };
 
 module.exports = userController;

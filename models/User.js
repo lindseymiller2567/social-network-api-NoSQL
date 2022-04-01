@@ -8,21 +8,18 @@ const userSchema = new Schema(
             required: 'You must provide a username.',
             trim: true
         },
-
         email: {
             type: String,
             unique: true,
             required: 'You must provide an email address.',
             match: [/.+@.+\..+/, 'Please enter a valid e-mail address']
         },
-
-        // thoughts: [
-        //     {
-        //         type: Schema.Types.ObjectId,
-        //         ref: 'Thought'
-        //     }
-        // ],
-
+        thoughts: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Thought'
+            }
+        ],
         friends: [
             {
                 type: Schema.Types.ObjectId,
