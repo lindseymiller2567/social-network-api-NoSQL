@@ -122,6 +122,18 @@ const thoughtController = {
                 console.log(err)
                 res.json(err)
             });
+    },
+
+    // DELETE a reaction 
+    // api/thoughts/:thoughtId/:reactionId
+    deleteReaction(req, res) {
+        Thought.findOneAndUpdate(
+            { _id: req.params.thoughtId },
+            { $pull: { reactions: { _id: req.params.reactionId } } },
+            { new: true }
+        )
+            .then(dbThoughtData => res.json(dbThoughtData))
+            .catch(err => res.json(err));
     }
 };
 
