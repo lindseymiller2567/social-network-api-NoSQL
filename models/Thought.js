@@ -38,7 +38,7 @@ const thoughtSchema = new Schema({
         type: String,
         required: 'Must enter a username.'
     },
-    reactions: [reactionSchema]
+    reactions: [reactionSchema] // sub document 
 },
     {
         toJSON: {

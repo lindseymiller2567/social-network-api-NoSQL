@@ -1,3 +1,4 @@
+const Thought = require('../models/Thought');
 const User = require('../models/User');
 
 const userController = {
@@ -25,13 +26,14 @@ const userController = {
             .then(dbUserData => {
                 if (!dbUserData) {
                     res.status(404).json({ message: 'No user found with this id.' })
+                    return;
                 }
                 res.json(dbUserData)
             })
             .catch(err => {
                 console.log(err);
                 res.status(400).json(err);
-            })
+            });
     },
 
     // POST a user (create a user)
@@ -58,11 +60,25 @@ const userController = {
                 res.json(dbUserData);
             })
             .catch(err => res.status(400).json(err));
-    }
+    },
 
     // DELETE a user 
     // api/users/:id
-    // to come... 
+    deleteUser(req, res) {
+        User.findOneAndDelete(
+            { _id: req.params.id }
+        )
+            .then(dbUserData => {
+                if (!dbUserData) {
+                    return res.status(404).json({ message: 'No user with this id.' })
+                }
+                return Thought.deleteMany({ _id: { $in: dbUserData.thoughts } });
+            })
+            .then(() => {
+                res.json({ message: 'User and associated thoughts deleted.' });
+            })
+            .catch(err => res.status(500).json(err));
+    }
 };
 
 module.exports = userController;
