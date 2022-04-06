@@ -14,7 +14,9 @@ npm install
 ```
 
 ## Usage
-The application can be invoked from the command line by entering: `npm start`. Checkout the link below for a walkthrough video that demonstrates the application's functionality. <br/>
+To start testing the routes, invoke the application from the command line by entering: `npm start`. Checkout the link below for a walkthrough video that demonstrates the application's functionality.
+<br/>
+<br/>
 link to go here.
 
 ## Questions
