@@ -16,7 +16,6 @@ npm install
 ## Usage
 To start testing the routes, invoke the application from the command line by entering: `npm start`. Checkout the link below for a walkthrough video that demonstrates the application's functionality by testing the routes in Insomnia.  
 <br/>
-<br/>
 https://drive.google.com/file/d/1mIzzBvybGHSLTB5iZ1zEPsthL8u3f8GY/view 
 
 ## Questions
