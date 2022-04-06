@@ -69,10 +69,13 @@ const userController = {
             { _id: req.params.id }
         )
             .then(dbUserData => {
+                // console.log(dbUserData)
                 if (!dbUserData) {
                     return res.status(404).json({ message: 'No user with this id.' })
                 }
                 // delete user's associated thoughts
+                // delete where the _id field in Thought matches any one of the values inside the array of dbUserData.thoughts
+                // Mongoose $in operator is useful when you want to find records where one property is a set of values, and not just one value
                 return Thought.deleteMany({ _id: { $in: dbUserData.thoughts } });
             })
             .then(() => {
